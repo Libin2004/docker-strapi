@@ -111,3 +111,9 @@ http://strapi:1337
 ```
 docker compose down
 ```
+
+## Loom Link
+```
+https://www.loom.com/share/8c420db3ac604d72ad941113d5ea4960
+```
+
