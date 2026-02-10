@@ -1,0 +1,53 @@
+networks:
+  strapi-net:
+    driver: bridge
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: strapi-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: strapiuser
+      POSTGRES_PASSWORD: strapipassword
+      POSTGRES_DB: strapidb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - strapi-net
+
+  strapi:
+    image: node:20
+    container_name: strapi-app
+    working_dir: /srv/app
+    volumes:
+      - ./app:/srv/app
+    command: sh -c "yarn install && yarn develop"
+    ports:
+      - "1337:1337"
+    environment:
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_NAME: strapidb
+      DATABASE_USERNAME: strapiuser
+      DATABASE_PASSWORD: strapipassword
+    depends_on:
+      - postgres
+    networks:
+      - strapi-net
+
+  nginx:
+    image: nginx:latest
+    container_name: strapi-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - strapi
+    networks:
+      - strapi-net
+
+volumes:
+  pgdata:
