@@ -6,7 +6,4 @@ variable "image" {
   description = "ECR image URI"
   type        = string
 }
-variable "public_key" {
-  description = "SSH public key"
-}
 
