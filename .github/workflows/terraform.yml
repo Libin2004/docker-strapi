@@ -1,10 +1,6 @@
 name: Terraform Deploy
 
-on:
-  workflow_run:
-    workflows: ["Build and Push Image"]
-    types:
-      - completed
+on: [push]
 
 
 env:
