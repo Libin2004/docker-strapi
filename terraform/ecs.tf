@@ -28,7 +28,7 @@ resource "aws_ecs_task_definition" "strapi" {
 
   container_definitions = jsonencode([
     {
-      name  = "strapi"
+      name  = "strapi-libin"
       image = var.image
       essential = true
       portMappings = [
@@ -42,7 +42,7 @@ resource "aws_ecs_task_definition" "strapi" {
 }
 
 resource "aws_ecs_service" "service" {
-  name            = "strapi-service"
+  name            = "strapi-service-libin"
   cluster         = aws_ecs_cluster.cluster.id
   task_definition = aws_ecs_task_definition.strapi.arn
   launch_type     = "FARGATE"
