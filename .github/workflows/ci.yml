@@ -2,10 +2,11 @@ name: Build and Push Image
 
 on:
   push:
-    branches: [ main ]
+    branches:  
+      - ecr 
 
 env:
-  AWS_REGION: ap-south-1
+  AWS_REGION: us-east-1
   ECR_REPOSITORY: strapi-app
 
 jobs:

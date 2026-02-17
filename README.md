@@ -1,38 +1,74 @@
-# Devops-Intern
-# AWS EC2 Launch – Manual & Terraform
+# Strapi Deployment on AWS ECS Fargate using Terraform and GitHub Actions
 
-## Objective
-- Learn AWS core concepts
-- Launch EC2 manually via AWS Console
-- Provision EC2 using Terraform
-- Understand Infrastructure as Code (IaC)
+## Project Overview
 
----
+This project demonstrates a complete CI/CD pipeline for deploying a containerized Strapi application on AWS ECS Fargate using Terraform. The deployment process is fully automated using GitHub Actions, from building the Docker image to updating the ECS task definition.
 
-## AWS Services Used
-- EC2
-- IAM
-- VPC
-- Security Groups
-- Terraform
+The goal of this project is to showcase practical DevOps skills including containerization, infrastructure as code, and automated cloud deployment.
 
 ---
 
-## Part 1: EC2 Manual Setup
-Steps:
-1. Login to AWS Console
-2. Launch EC2 instance
-3. Configure AMI, instance type, key pair
-4. Connect using SSH
+## Architecture
+
+GitHub → GitHub Actions → Docker → Amazon ECR → Terraform → ECS Fargate
+
+Workflow:
+
+1. Code is pushed to GitHub.
+2. GitHub Actions builds the Docker image.
+3. The image is tagged using the commit SHA.
+4. The image is pushed to Amazon ECR.
+5. Terraform updates the ECS task definition.
+6. ECS Fargate deploys the new container.
 
 ---
 
-## Part 2: EC2 Using Terraform
-Terraform was used to provision EC2 via code.
+## Repository Structure
 
+```
+.
+├── app/
+│   └── Dockerfile
+├── terraform/
+│   ├── main.tf
+│   ├── ecs.tf
+│   ├── variables.tf
+│   └── provider.tf
+└── .github/workflows/
+    ├── ci.yml
+    └── terraform.yml
+```
 
+---
 
-### Link for Loom video
+## Technologies Used
 
-https://www.loom.com/share/0c208ecc21bd44fdba3360a7684b7a79
+* AWS ECS Fargate
+* Amazon ECR
+* Terraform
+* Docker
+* GitHub Actions
+* Strapi
+* Node.js
 
+---
+
+## CI/CD Pipeline
+
+### CI Workflow
+
+The CI pipeline performs the following steps:
+
+* Builds Docker image
+* Tags image using commit SHA
+* Pushes image to Amazon ECR
+
+Triggered on:
+
+```
+push to any branch
+```
+
+---
+
+### CD
