@@ -30,9 +30,9 @@ resource "aws_route_table_association" "assoc" {
 }
 
 resource "aws_ecs_cluster" "cluster" {
-  name = "strapi-cluster"
+  name = "strapi-cluster-libin"
 }
 
 resource "aws_ecr_repository" "repo" {
-  name = "strapi-app"
+  name = "strapi-app-libin"
 }
