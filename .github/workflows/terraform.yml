@@ -1,9 +1,10 @@
 name: Terraform Deploy
 
 on:
-  push:
-    branches:
-      - ecr
+  workflow_run:
+    workflows: ["Build and Push Image"]
+    types:
+      - completed
 
 
 env:

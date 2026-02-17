@@ -1,11 +1,8 @@
-resource "aws_security_group" "strapi_sg" {
-  name        = "strapi-security-group"
-  description = "Allow SSH and Strapi"
-
- 
+resource "aws_security_group" "ecs_sg" {
+  name   = "ecs-security-group"
+  vpc_id = aws_vpc.main.id
 
   ingress {
-    description = "Strapi"
     from_port   = 1337
     to_port     = 1337
     protocol    = "tcp"
