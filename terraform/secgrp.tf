@@ -1,6 +1,6 @@
 resource "aws_security_group" "ecs_sg" {
   name   = "ecs-sg-libin"
-  vpc_id = aws_vpc.main.id
+  vpc_id = data.aws_vpc.default.id
 
   ingress {
     from_port   = 1337
