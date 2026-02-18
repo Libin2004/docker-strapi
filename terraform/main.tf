@@ -33,6 +33,4 @@ resource "aws_ecs_cluster" "cluster" {
   name = "strapi-cluster-libin"
 }
 
-resource "aws_ecr_repository" "repo" {
-  name = "strapi-app-libin"
-}
+

@@ -1,5 +1,5 @@
 resource "aws_security_group" "ecs_sg" {
-  name   = "ecs-security-group"
+  name   = "ecs-sg-libin"
   vpc_id = aws_vpc.main.id
 
   ingress {
