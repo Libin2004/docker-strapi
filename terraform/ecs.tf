@@ -21,6 +21,14 @@ task_role_arn      = "arn:aws:iam::811738710312:role/ecs_fargate_taskRole"
           hostPort      = 1337
         }
       ]
+       logConfiguration = {
+      logDriver = "awslogs"
+      options = {
+        awslogs-group         = aws_cloudwatch_log_group.strapi.name
+        awslogs-region        = "us-east-1"
+        awslogs-stream-prefix = "ecs/strapi-libin"
+      }
+    }
     }
   ])
 }
