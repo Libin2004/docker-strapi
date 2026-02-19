@@ -21,6 +21,14 @@ task_role_arn      = "arn:aws:iam::811738710312:role/ecs_fargate_taskRole"
           hostPort      = 1337
         }
       ]
+        environment = [
+      { name = "HOST", value = "0.0.0.0" },
+      { name = "PORT", value = "1337" },
+      { name = "APP_KEYS", value = "myAppKey1,myAppKey2,myAppKey3,myAppKey4" },
+      { name = "API_TOKEN_SALT", value = "randomApiSalt123" },
+      { name = "ADMIN_JWT_SECRET", value = "randomAdminSecret123" },
+      { name = "JWT_SECRET", value = "randomJwtSecret123" }
+    ]
        logConfiguration = {
       logDriver = "awslogs"
       options = {
