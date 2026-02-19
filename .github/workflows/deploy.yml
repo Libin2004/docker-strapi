@@ -59,6 +59,18 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
+      - name: Create S3 Backend Bucket if not exists
+        run: |
+          aws s3api head-bucket --bucket strapi-terraform-state-libin 2>/dev/null \
+          || aws s3api create-bucket --bucket strapi-terraform-state-libin --region us-east-1
+      
+      - name: Enable Versioning
+        run: |
+          aws s3api put-bucket-versioning \
+          --bucket strapi-terraform-state-libin \
+          --versioning-configuration Status=Enabled
+
+
       - uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Apply
